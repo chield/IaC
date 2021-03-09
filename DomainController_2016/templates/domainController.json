@@ -49,7 +49,7 @@
         "VmDscArchive": "[parameters('DSC_domain_1_URL')]",
         "VmDscScript": "createadpdc.ps1",
         "VmDscFunction": "\\CreateADPDC",
-        "vmNSGId": "/subscriptions/e8055386-2b08-4238-9749-edd80932c74e/resourceGroups/WS2016-DC/providers/Microsoft.Network/networkSecurityGroups/MSFT-nsg-01",
+        "vmNSGId": "/subscriptions/60793049-d642-4e61-ab84-c16ae308b6ca/resourceGroups/rg-weu-domaincontroller/providers/Microsoft.Network/networkSecurityGroups/wvd4all-nsg-01",
         "vmPIPId": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('envName'), '-pip-01'))]",
         "vmDiagStorageName": "[concat(uniquestring(resourceGroup().id), 'diagstr')]",
         "virtualNetworkId": "[variables('vnetID')]",
