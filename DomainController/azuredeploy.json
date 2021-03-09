@@ -1,0 +1,261 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the administrator account of the new VM and domain"
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+                "description": "The password for the administrator account of the new VM and domain"
+            }
+        },
+        "domainName": {
+            "type": "string",
+            "metadata": {
+                "description": "The FQDN of the Active Directory Domain to be created"
+            }
+        },
+        "dnsPrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "The DNS prefix for the public IP address used by the Load Balancer"
+            }
+        },
+        "location": {
+            "type": "string"
+        },
+        "networkSecurityGroupName": {
+            "type": "string"
+        },
+        "networkSecurityGroupRules": {
+            "type": "array"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "virtualNetworkId": {
+            "type": "string"
+        },
+        "publicIpAddressName": {
+            "type": "string"
+        },
+        "publicIpAddressType": {
+            "type": "string"
+        },
+        "publicIpAddressSku": {
+            "type": "string"
+        },
+        "virtualMachineName": {
+            "type": "string"
+        },
+        "virtualMachineComputerName": {
+            "type": "string"
+        },
+        "virtualMachineRG": {
+            "type": "string"
+        },
+        "osDiskType": {
+            "type": "string"
+        },
+        "virtualMachineSize": {
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "secureString"
+        },
+        "patchMode": {
+            "type": "string"
+        },
+        "enableHotpatching": {
+            "type": "bool"
+        },
+        "autoShutdownStatus": {
+            "type": "string"
+        },
+        "autoShutdownTime": {
+            "type": "string"
+        },
+        "autoShutdownTimeZone": {
+            "type": "string"
+        },
+        "autoShutdownNotificationStatus": {
+            "type": "string"
+        },
+        "autoShutdownNotificationLocale": {
+            "type": "string"
+        },
+         "_artifactsLocation": {
+      "type": "string",
+      "metadata": {
+        "description": "The location of resources, such as templates and DSC modules, that the template depends on"
+      },
+      "defaultValue": "https://raw.githubusercontent.com/mikepfeiffer/azure-domain-controller/master/"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Auto-generated token to access _artifactsLocation"
+      },
+      "defaultValue": ""
+    }
+    },
+    "variables": {
+        "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
+        "vnetId": "[parameters('virtualNetworkId')]",
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]",
+        "networkInterfaceName": "[concat(parameters('virtualMachineName'), 'nic-01')]"
+    },
+    "resources": [
+        {
+            "name": "[variables('networkInterfaceName')]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-10-01",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]",
+                "[concat('Microsoft.Network/publicIpAddresses/', parameters('publicIpAddressName'))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "subnet": {
+                                "id": "[variables('subnetRef')]"
+                            },
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIpAddress": {
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                            }
+                        }
+                    }
+                ],
+                "networkSecurityGroup": {
+                    "id": "[variables('nsgId')]"
+                }
+            },
+            "tags": {
+                "vm-dc01": "1"
+            }
+        },
+        {
+            "name": "[parameters('networkSecurityGroupName')]",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2019-02-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "securityRules": "[parameters('networkSecurityGroupRules')]"
+            },
+            "tags": {
+                "vm-dc01": "1"
+            }
+        },
+        {
+            "name": "[parameters('publicIpAddressName')]",
+            "type": "Microsoft.Network/publicIpAddresses",
+            "apiVersion": "2019-02-01",
+            "location": "[parameters('location')]",
+            "properties": {
+                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
+            },
+            "sku": {
+                "name": "[parameters('publicIpAddressSku')]"
+            },
+            "tags": {
+                "vm-dc01": "1"
+            }
+        },
+        {
+            "name": "[parameters('virtualMachineName')]",
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2020-12-01",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkInterfaces/', variables('networkInterfaceName'))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "[parameters('virtualMachineSize')]"
+                },
+                "storageProfile": {
+                    "osDisk": {
+                        "createOption": "fromImage",
+                        "managedDisk": {
+                            "storageAccountType": "[parameters('osDiskType')]"
+                        }
+                    },
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2019-Datacenter",
+                        "version": "latest"
+                    }
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName'))]"
+                        }
+                    ]
+                },
+                "securityProfile": {},
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachineComputerName')]",
+                    "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]",
+                    "windowsConfiguration": {
+                        "enableAutomaticUpdates": true,
+                        "provisionVmAgent": true,
+                        "patchSettings": {
+                            "enableHotpatching": "[parameters('enableHotpatching')]",
+                            "patchMode": "[parameters('patchMode')]"
+                        }
+                    }
+                }
+            },
+            "tags": {
+                "vm-dc01": "1"
+            }
+        },
+        {
+            "name": "[concat('shutdown-computevm-', parameters('virtualMachineName'))]",
+            "type": "Microsoft.DevTestLab/schedules",
+            "apiVersion": "2017-04-26-preview",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
+            ],
+            "properties": {
+                "status": "[parameters('autoShutdownStatus')]",
+                "taskType": "ComputeVmShutdownTask",
+                "dailyRecurrence": {
+                    "time": "[parameters('autoShutdownTime')]"
+                },
+                "timeZoneId": "[parameters('autoShutdownTimeZone')]",
+                "targetResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]",
+                "notificationSettings": {
+                    "status": "[parameters('autoShutdownNotificationStatus')]",
+                    "notificationLocale": "[parameters('autoShutdownNotificationLocale')]",
+                    "timeInMinutes": "30"
+                }
+            },
+            "tags": {
+                "vm-dc01": "1"
+            }
+        }
+    ],
+    "outputs": {
+        "adminUsername": {
+            "type": "string",
+            "value": "[parameters('adminUsername')]"
+        }
+    }
+}
