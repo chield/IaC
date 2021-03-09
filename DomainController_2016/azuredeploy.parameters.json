@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "userName": {
-        "value": "hadmin"
+        "value": "adminChiel"
       },
       "userPassword": {
-        "value": "Password1234"
+        "value": "Rijswijk2286Gg"
       },
       "domainName": {
-        "value": "test.com"
+        "value": "wvd4all.com"
       },
       "envName": {
-        "value": "msft"
+        "value": "wvd4all"
       }
       
     }
