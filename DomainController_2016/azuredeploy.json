@@ -36,12 +36,12 @@
       }
     },
     "variables": {
-      "templateBaseUrl": "https://raw.githubusercontent.com/hasangural/templates",
-      "virtualNetworkUrl": "https://raw.githubusercontent.com/hasangural/azure-dc-2016/master/templates/virtualNetwork.json",
-      "domainControllerUrl": "https://raw.githubusercontent.com/hasangural/azure-dc-2016/master/templates/domainController.json",
+      "templateBaseUrl": "https://raw.githubusercontent.com/chield/IaC/main/DomainController_2016",
+      "virtualNetworkUrl": "https://raw.githubusercontent.com/chield/IaC/main/DomainController_2016/templates/virtualNetwork.json",
+      "domainControllerUrl": "https://raw.githubusercontent.com/chield/IaC/main/DomainController_2016/templates/domainController.json",
       "DSC": {
         "DSC_domain": {
-          "Link": "https://raw.githubusercontent.com/hasangural/azure-dc-2016/master/DSC/domain_build.zip"
+          "Link": "https://raw.githubusercontent.com/chield/IaC/main/DomainController_2016/DSC/domain_build.zip"
         }
       },
       "resourceLocation": "[resourceGroup().location]"
