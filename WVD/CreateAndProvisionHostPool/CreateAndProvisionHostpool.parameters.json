@@ -9,31 +9,31 @@
             "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
         },
         "hostpoolName": {
-            "value": "WVD4All-HP" 
+            "value": "WVD4All-HP"
         },
         "hostpoolFriendlyName": {
-            "value": "WVD Hostpool"
+            "value": ""
         },
         "hostpoolDescription": {
-            "value": "AzureDevOps deployment"
+            "value": ""
         },
         "location": {
             "value": "westeurope"
         },
         "workSpaceName": {
-            "value": "WVD4All-WS"
+            "value": ""
         },
         "workspaceLocation": {
-            "value": "westeurope"
+            "value": ""
         },
         "workspaceResourceGroup": {
-            "value": "rg-weu-workspaces"
+            "value": ""
         },
         "allApplicationGroupReferences": {
             "value": ""
         },
         "addToWorkspace": {
-            "value": true
+            "value": false 
         },
         "administratorAccountUsername": {
             "value": "adminVMHP@wvd4all.com"
@@ -42,7 +42,7 @@
             "value": ""
         },
         "createAvailabilitySet": {
-            "value": true
+            "value": false
         },
         "vmResourceGroup": {
             "value": "rg-weu-wvd-vms"
@@ -54,7 +54,7 @@
             "value": "Standard_D2s_v3"
         },
         "vmNumberOfInstances": {
-            "value": 1
+            "value": 2
         },
         "vmNamePrefix": {
             "value": "WVD-HP202103"
@@ -95,6 +95,15 @@
         "virtualNetworkResourceGroupName": {
             "value": "rg-weu-domaincontroller"
         },
+        "usePublicIP": {
+            "value": false
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
         "createNetworkSecurityGroup": {
             "value": false
         },
@@ -105,13 +114,13 @@
             "value": []
         },
         "hostpoolType": {
-            "value": "Pooled" 
+            "value": "Pooled"
         },
         "personalDesktopAssignmentType": {
             "value": "Automatic"
         },
         "maxSessionLimit": {
-            "value": 5
+            "value": 15
         },
         "loadBalancerType": {
             "value": "BreadthFirst"
@@ -138,6 +147,9 @@
             "value": {}
         },
         "networkSecurityGroupTags": {
+            "value": {}
+        },
+        "publicIPAddressTags": {
             "value": {}
         },
         "virtualMachineTags": {
