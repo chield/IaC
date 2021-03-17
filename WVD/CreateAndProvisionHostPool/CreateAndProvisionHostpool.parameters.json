@@ -135,7 +135,7 @@
             "value": ""
         },
         "hostpoolTags": {
-            "value": {"WVD-HP1"}
+            "value": "WVD-HP1"
         },
         "applicationGroupTags": {
             "value": "APP-GRP1"
