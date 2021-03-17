@@ -135,10 +135,10 @@
             "value": ""
         },
         "hostpoolTags": {
-            "value": "WVD-HP1"
+            "value": {}
         },
         "applicationGroupTags": {
-            "value": "APP-GRP1"
+            "value": {}
         },
         "availabilitySetTags": {
             "value": {}
@@ -153,7 +153,7 @@
             "value": {}
         },
         "virtualMachineTags": {
-            "value": "WEU-VMS"
+            "value": {}
         },
         "imageTags": {
             "value": {}
