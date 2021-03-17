@@ -1,0 +1,92 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "name": {
+          "value": "wvd4all-keyvault"
+      },
+      "location": {
+          "value": "westeurope"
+      },
+      "sku": {
+          "value": "Standard"
+      },
+      "accessPolicies": {
+          "value": [
+              {
+                  "objectId": "9dec7bc7-3dcc-4777-aeee-160207f96b88",
+                  "tenantId": "8636dec9-e537-426c-a836-e5ceea9287ab",
+                  "permissions": {
+                      "keys": [
+                          "Get",
+                          "List",
+                          "Update",
+                          "Create",
+                          "Import",
+                          "Delete",
+                          "Recover",
+                          "Backup",
+                          "Restore"
+                      ],
+                      "secrets": [
+                          "Get",
+                          "List",
+                          "Set",
+                          "Delete",
+                          "Recover",
+                          "Backup",
+                          "Restore"
+                      ],
+                      "certificates": [
+                          "Get",
+                          "List",
+                          "Update",
+                          "Create",
+                          "Import",
+                          "Delete",
+                          "Recover",
+                          "Backup",
+                          "Restore",
+                          "ManageContacts",
+                          "ManageIssuers",
+                          "GetIssuers",
+                          "ListIssuers",
+                          "SetIssuers",
+                          "DeleteIssuers"
+                      ]
+                  },
+                  "applicationId": ""
+              }
+          ]
+      },
+      "tenant": {
+          "value": "8636dec9-e537-426c-a836-e5ceea9287ab"
+      },
+      "enabledForDeployment": {
+          "value": true
+      },
+      "enabledForTemplateDeployment": {
+          "value": true
+      },
+      "enabledForDiskEncryption": {
+          "value": false
+      },
+      "enableRbacAuthorization": {
+          "value": false
+      },
+      "enableSoftDelete": {
+          "value": true
+      },
+      "softDeleteRetentionInDays": {
+          "value": 90
+      },
+      "networkAcls": {
+          "value": {
+              "defaultAction": "allow",
+              "bypass": "AzureServices",
+              "ipRules": [],
+              "virtualNetworkRules": []
+          }
+      }
+  }
+}
