@@ -57,7 +57,7 @@
             "value": 1
         },
         "vmNamePrefix": {
-            "value": "WVD-HP1"
+            "value": "WVD-HP202103"
         },
         "vmImageType": {
             "value": "Gallery"
