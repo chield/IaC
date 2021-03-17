@@ -171,10 +171,10 @@
             "value": "Desktop"
         },
         "ouPath": {
-            "value": "OU=WVD-WEU-VMs,DC=azure4all,DC=com"
+            "value": "OU=Pooled,OU=WVD-WEU,DC=wvd4all,DC=com"
         },
         "domain": {
-            "value": "azure4all.com"
+            "value": "wvd4all.com"
         }
     }
 }
