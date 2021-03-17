@@ -95,15 +95,6 @@
         "virtualNetworkResourceGroupName": {
             "value": "rg-weu-domaincontroller"
         },
-        "usePublicIP": {
-            "value": false
-        },
-        "publicIpAddressSku": {
-            "value": "Basic"
-        },
-        "publicIpAddressType": {
-            "value": "Dynamic"
-        },
         "createNetworkSecurityGroup": {
             "value": false
         },
@@ -147,9 +138,6 @@
             "value": {}
         },
         "networkSecurityGroupTags": {
-            "value": {}
-        },
-        "publicIPAddressTags": {
             "value": {}
         },
         "virtualMachineTags": {
