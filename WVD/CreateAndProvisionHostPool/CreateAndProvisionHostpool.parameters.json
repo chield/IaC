@@ -1,39 +1,30 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "nestedTemplatesLocation": {
-            "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/nestedtemplates/"
-        },
-        "artifactsLocation": {
-            "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
-        },
         "hostpoolName": {
             "value": "WVD4All-HP"
         },
         "hostpoolFriendlyName": {
-            "value": ""
+            "value": "DevOps"
         },
         "hostpoolDescription": {
-            "value": ""
+            "value": "ARM Deployment"
         },
         "location": {
             "value": "westeurope"
         },
         "workSpaceName": {
-            "value": ""
+            "value": "WVD4All-WS"
         },
         "workspaceLocation": {
-            "value": ""
+            "value": "westeurope"
         },
         "workspaceResourceGroup": {
-            "value": ""
-        },
-        "allApplicationGroupReferences": {
-            "value": ""
+            "value": "rg-weu-workspaces"
         },
         "addToWorkspace": {
-            "value": false 
+            "value": true
         },
         "administratorAccountUsername": {
             "value": "adminVMHP@wvd4all.com"
@@ -41,8 +32,14 @@
         "administratorAccountPassword": {
             "value": ""
         },
+        "vmAdministratorAccountUsername": {
+            "value": "adminVM"
+        },
+        "vmAdministratorAccountPassword": {
+            "value": ""
+        },
         "createAvailabilitySet": {
-            "value": false
+            "value": true
         },
         "vmResourceGroup": {
             "value": "rg-weu-wvd-vms"
@@ -54,13 +51,10 @@
             "value": "Standard_D2s_v3"
         },
         "vmNumberOfInstances": {
-            "value": 2
+            "value": 1
         },
         "vmNamePrefix": {
             "value": "WVD-HP202103"
-        },
-        "vmImageType": {
-            "value": "Gallery"
         },
         "vmGalleryImageOffer": {
             "value": "office-365"
@@ -70,18 +64,6 @@
         },
         "vmGalleryImageSKU": {
             "value": "20h2-evd-o365pp"
-        },
-        "vmImageVhdUri": {
-            "value": ""
-        },
-        "vmCustomImageSourceId": {
-            "value": ""
-        },
-        "vmDiskType": {
-            "value": "StandardSSD_LRS"
-        },
-        "vmUseManagedDisks": {
-            "value": true
         },
         "storageAccountResourceGroupName": {
             "value": "rg-weu-wvd-vms"
@@ -95,21 +77,6 @@
         "virtualNetworkResourceGroupName": {
             "value": "rg-weu-domaincontroller"
         },
-        "usePublicIP": {
-            "value": false
-        },
-        "publicIpAddressSku": {
-            "value": "Basic"
-        },
-        "publicIpAddressType": {
-            "value": "Dynamic"
-        },
-        "createNetworkSecurityGroup": {
-            "value": false
-        },
-        "networkSecurityGroupId": {
-            "value": ""
-        },
         "networkSecurityGroupRules": {
             "value": []
         },
@@ -120,55 +87,10 @@
             "value": "Automatic"
         },
         "maxSessionLimit": {
-            "value": 15
-        },
-        "loadBalancerType": {
-            "value": "BreadthFirst"
-        },
-        "customRdpProperty": {
-            "value": ""
-        },
-        "vmTemplate": {
-            "value": ""
+            "value": 5
         },
         "tokenExpirationTime": {
             "value": ""
-        },
-        "hostpoolTags": {
-            "value": {}
-        },
-        "applicationGroupTags": {
-            "value": {}
-        },
-        "availabilitySetTags": {
-            "value": {}
-        },
-        "networkInterfaceTags": {
-            "value": {}
-        },
-        "networkSecurityGroupTags": {
-            "value": {}
-        },
-        "publicIPAddressTags": {
-            "value": {}
-        },
-        "virtualMachineTags": {
-            "value": {}
-        },
-        "imageTags": {
-            "value": {}
-        },
-        "apiVersion": {
-            "value": "2019-12-10-preview"
-        },
-        "deploymentId": {
-            "value": ""
-        },
-        "validationEnvironment": {
-            "value": false
-        },
-        "preferredAppGroupType": {
-            "value": "Desktop"
         },
         "ouPath": {
             "value": "OU=Pooled,OU=WVD-WEU,DC=wvd4all,DC=com"
