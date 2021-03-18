@@ -1,15 +1,21 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "nestedTemplatesLocation": {
+            "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/nestedtemplates/"
+        },
+        "artifactsLocation": {
+            "value": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/ARM-wvd-templates/DSC/Configuration.zip"
+        },
         "hostpoolName": {
-            "value": "WVD4All-HP"
+            "value": "WVD4All-HP" 
         },
         "hostpoolFriendlyName": {
-            "value": "DevOps"
+            "value": "WVD Hostpool"
         },
         "hostpoolDescription": {
-            "value": "ARM Deployment"
+            "value": "AzureDevOps deployment"
         },
         "location": {
             "value": "westeurope"
@@ -22,6 +28,9 @@
         },
         "workspaceResourceGroup": {
             "value": "rg-weu-workspaces"
+        },
+        "allApplicationGroupReferences": {
+            "value": ""
         },
         "addToWorkspace": {
             "value": true
@@ -50,6 +59,9 @@
         "vmNamePrefix": {
             "value": "WVD-HP202103"
         },
+        "vmImageType": {
+            "value": "Gallery"
+        },
         "vmGalleryImageOffer": {
             "value": "office-365"
         },
@@ -58,6 +70,18 @@
         },
         "vmGalleryImageSKU": {
             "value": "20h2-evd-o365pp"
+        },
+        "vmImageVhdUri": {
+            "value": ""
+        },
+        "vmCustomImageSourceId": {
+            "value": ""
+        },
+        "vmDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "vmUseManagedDisks": {
+            "value": true
         },
         "storageAccountResourceGroupName": {
             "value": "rg-weu-wvd-vms"
@@ -71,11 +95,17 @@
         "virtualNetworkResourceGroupName": {
             "value": "rg-weu-domaincontroller"
         },
+        "createNetworkSecurityGroup": {
+            "value": false
+        },
+        "networkSecurityGroupId": {
+            "value": ""
+        },
         "networkSecurityGroupRules": {
             "value": []
         },
         "hostpoolType": {
-            "value": "Pooled"
+            "value": "Pooled" 
         },
         "personalDesktopAssignmentType": {
             "value": "Automatic"
@@ -83,8 +113,50 @@
         "maxSessionLimit": {
             "value": 5
         },
+        "loadBalancerType": {
+            "value": "BreadthFirst"
+        },
+        "customRdpProperty": {
+            "value": ""
+        },
+        "vmTemplate": {
+            "value": ""
+        },
         "tokenExpirationTime": {
             "value": ""
+        },
+        "hostpoolTags": {
+            "value": {}
+        },
+        "applicationGroupTags": {
+            "value": {}
+        },
+        "availabilitySetTags": {
+            "value": {}
+        },
+        "networkInterfaceTags": {
+            "value": {}
+        },
+        "networkSecurityGroupTags": {
+            "value": {}
+        },
+        "virtualMachineTags": {
+            "value": {}
+        },
+        "imageTags": {
+            "value": {}
+        },
+        "apiVersion": {
+            "value": "2019-12-10-preview"
+        },
+        "deploymentId": {
+            "value": ""
+        },
+        "validationEnvironment": {
+            "value": false
+        },
+        "preferredAppGroupType": {
+            "value": "Desktop"
         },
         "ouPath": {
             "value": "OU=Pooled,OU=WVD-WEU,DC=wvd4all,DC=com"
