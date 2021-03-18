@@ -32,12 +32,6 @@
         "administratorAccountPassword": {
             "value": ""
         },
-        "vmAdministratorAccountUsername": {
-            "value": "adminVM"
-        },
-        "vmAdministratorAccountPassword": {
-            "value": ""
-        },
         "createAvailabilitySet": {
             "value": true
         },
